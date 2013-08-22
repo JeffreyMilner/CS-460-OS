@@ -12,6 +12,7 @@ int main(int argc, const char *argv[]) {
 
     // Get values for A from user
     int ix;
+    printf("Enter the elements for the array: ");
     for(ix = 0; ix < n; ix++) {
         scanf("%d", &A[ix]);
     }

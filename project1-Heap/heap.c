@@ -1,31 +1,49 @@
 #include "heap.h"
-#include <string.h>
 
 void printList(int A[], int n) {
-    char* concatedString;
     int ix = 0;
 
+    printf("Elements in list: ");
     for(ix = 0; ix < n; ix++) {
-        // Concat each one in A[] onto a string
-
+        printf("%d ", A[ix]);
     }
-    printf("%s\n", concatedString);
+    printf("\n");
 }
 
 void heapify(int A[], int i, int n){
-    
+    int leftChild, rightChild, newIndex, tmp;
+
+    leftChild = 2 * (i + 1) - 1;
+    rightChild = 2 * (i + 1);
+
+    if ( leftChild <  n || rightChild < n) {
+        if ( rightChild < n) {
+            if ( A[leftChild] <= A[rightChild]) {
+                newIndex = leftChild;
+            } else {
+                newIndex = rightChild;
+            }
+        } else {
+            newIndex = leftChild;
+        }
+
+        if ( A[i] > A[newIndex]) {
+            tmp = A[newIndex];
+            A[newIndex] = A[i];
+            A[i] = tmp;
+            heapify(A, newIndex, n);
+        }
+    }
 }
 
 void buildHeap(int A[], int n) {
-    
+    int ix;
+    for (ix = n; ix >= 0 ; ix--) {
+        heapify(A, ix, n);
+    }
 }
 
 int  getMin(int A[]) {
-    int ix = 0;
-    int length = sizeof(A)/sizeof(A[0]);
-
-    for(ix = 0; ix < length-1; ix++) { 
-         // Do a sort, then pull the smallest/ first element in the array
-    }
+    return A[0];
 }
 
