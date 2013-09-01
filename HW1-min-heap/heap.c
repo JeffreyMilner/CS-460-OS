@@ -2,19 +2,15 @@
 #include <stdlib.h>
 #include "heap.h"
 
-int leftChildIndex( int index ){
-	return 2 * ( index + 1 ) - 1;
-}
-
-int rightChildIndex( int index ){
-	return 2 * ( index + 1 );
-}
+/**
+ * See heap.h for function documentation
+ */
 
 void heapify( int A[], int index, int len ){
-	int leftChild, rightChild, newIndex, swapVal;
+	int leftChild, rightChild, newIndex;
 
-	leftChild = leftChildIndex( index );
-	rightChild = rightChildIndex( index );
+	leftChild = 2 * ( index + 1 ) - 1;
+	rightChild = 2 * ( index + 1 );
 	//test if left/right child exists
 	if( leftChild < len || rightChild < len ){
 		//since child exists swap index with lowest child if child has lower value
@@ -25,15 +21,21 @@ void heapify( int A[], int index, int len ){
 		}
 		//Only swap if child is lower value
 		if( A[index] > A[newIndex] ){
-			swapVal = A[newIndex];
-			A[newIndex] = A[index];
-			A[index] = swapVal;
+			swap( A, index, newIndex );
 			//then run heapify on newly updated index
 			heapify( A, newIndex, len );
 		}
 	}
 	//else noop (we are done with this heapify)
 };
+
+void swap( int A[], unsigned int index, unsigned int newIndex){
+	unsigned int swapVal;
+
+	swapVal = A[newIndex];
+	A[newIndex] = A[index];
+	A[index] = swapVal;
+}
 
 void buildHeap( int A[], int len ){
 	//Hint: nodes without children satisfy the min-heap property
@@ -42,11 +44,13 @@ void buildHeap( int A[], int len ){
 	// the array will therefore be a min-heap if 'heapified'.
 	int i;
 	for( i = len; i >= 0; i-- ){
+		//we could also be smarter and start on the 2nd to last depth
 		heapify( A, i, len );
 	}
 };
 
 int getMin( int A[] ){
+	//since were already assuming min-heap
 	return A[0];
 };
 

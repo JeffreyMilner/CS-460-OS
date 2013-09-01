@@ -19,15 +19,10 @@ void buildHeap( int A[], int len );
  */
 int getMin( int A[] );
 /**
+ * Swaps two given index values with array of integers A
+ */
+void swap( int A[], unsigned int index, unsigned int newIndex);
+/**
  * Prints all values of the list
  */
 void printList( int A[], int n );
-
-/**
- * Given an index in the heap, gives the location where the left child will be
- */
-int leftChild( int index );
-/**
- * Given an index in the heap, gives the location where the right child will be
- */
-int rightChild( int index );

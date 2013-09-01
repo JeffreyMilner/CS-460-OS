@@ -1,3 +1,6 @@
+/**
+ * @see README.md for compilation and usage
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include "heap.h"
@@ -6,8 +9,15 @@ int main( int argc, char **argv ) {
 	int *A; //pointer to int
 	int n; //n is the number of elements
 
-	printf("Enter the number of elements for the array: ");
-	fscanf(stdin, "%d" , &n ); //store input in n
+	n = 0;
+	while( n < 1 ){
+		printf("Enter the number of elements for the array (positive integer...): ");
+		fscanf(stdin, "%d" , &n ); //store input in n
+
+		if( n < 1 ){
+			printf("WHOAAA I SAID POSITIVE INTEGER! Please try again.\n");
+		}
+	}
 
 	//allocates space for an array of n integer elements
 	A = (int*) malloc( n * sizeof(int) );
@@ -28,4 +38,5 @@ int main( int argc, char **argv ) {
 
 	//print the heapified list
 	printList( A, n );
+	return 0;
 }
